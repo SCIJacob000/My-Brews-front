@@ -1,5 +1,5 @@
 #Camping Compass
-https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=yq0OUDx2bPoLhLKixzCtXQFKLjkhQCrvmfqUkeIZ
+https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key={apiKey}
 
 
 User Stories:
