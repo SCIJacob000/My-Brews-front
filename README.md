@@ -4,9 +4,9 @@ https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=yq0OUDx2bPoLhLKixzC
 
 User Stories:
 
-Users will be taken to the homne page.
+Users will be taken to the home page.
 
-From the homepage if not logged in you wilkl only see searches and map
+From the homepage if not logged in you will only see searches and map
 
 Non logged in users may search for natl parks using the searches or map and find out basic info on those locations
 
@@ -29,7 +29,18 @@ Hike the great divide? Take a walk in the Badlands? Cruise the everglades in an 
 
 
 
+Nice to have:
 
+All parks on map so you could "click your way to a trip"
+
+Run a search based on your current location to find the nearest natl parks
+
+
+Stretch Goals:
+
+One could actually get a mapped out route of their prospective trip!
+
+The app would send you a detailed email about your trip and email you if any alerts were made that would coincide with the persons trip!
 
 
 
