@@ -14,16 +14,19 @@ class Login extends Component {
 	}
 
 	logout= async(e)=>{
-		await fetch(process.env.REACT_APP_SERVER_URL + '/users/logout', {
-        method: 'GET',
-        credentials: 'include',// on every request we have to send the cookie
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+		console.log("logout");
+		const response = await fetch(process.env.REACT_APP_SERVER_URL + '/users/logout', {
+	        method: 'GET',
+	        credentials: 'include',// on every request we have to send the cookie
+	        headers: {
+	          'Content-Type': 'application/json'
+	        }
+      	})
+      	const parsed = await response.json()
+      	console.log(parsed);
 	}
 
-	handleChange= (e)=>{
+	handleChange = (e)=>{
 		this.setState({
 			[e.target.name]: e.target.value,
 			//userDbId:     do i need to save this in state for other things to work down the line?
@@ -87,13 +90,15 @@ class Login extends Component {
 	}
 	render(){
 		return(
-			<form onSubmit={this.handleSubmit}>
-				Username:<input type="text" name="username" onChange={this.handleChange}/><br/>
-				Password:<input type="text" name="password" onChange={this.handleChange}/><br/>
-				<button type="submit">{this.state.whatAmIDoing === "login" ? "Log-In" : "Register"}</button>
+			<div>
+				<form onSubmit={this.handleSubmit}>
+					Username:<input type="text" name="username" onChange={this.handleChange}/><br/>
+					Password:<input type="text" name="password" onChange={this.handleChange}/><br/>
+					<button type="submit">{this.state.whatAmIDoing === "login" ? "Log-In" : "Register"}</button>
+					<p onClick={this.toggleLoginRegister}>Dont have an account? Click Here!</p>
+				</form>
 				<button type="submit" onClick={this.logout}>Log-Out</button>
-				<p onClick={this.toggleLoginRegister}>Dont have an account? Click Here!</p>
-			</form>
+			</div>
 		)
 	}
 }
