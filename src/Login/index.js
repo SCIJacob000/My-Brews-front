@@ -14,7 +14,7 @@ class Login extends Component {
 	}
 
 	logout= async(e)=>{
-		await fetch('http://localhost:9000/users/logout', {
+		await fetch(process.env.REACT_APP_SERVER_URL + '/users/logout', {
         method: 'GET',
         credentials: 'include',// on every request we have to send the cookie
         headers: {
@@ -47,7 +47,7 @@ class Login extends Component {
 		try{
 			 
 			if(this.state.whatAmIDoing === "register"){
-				const loginResponse = await fetch('http://localhost:9000/users/register', {
+				const loginResponse = await fetch(process.env.REACT_APP_SERVER_URL + '/users/register', {
 					method: 'POST',
 					credentials: 'include',
 					body: JSON.stringify(this.state),
@@ -64,7 +64,7 @@ class Login extends Component {
 				}
 			}
 			else{
-					const loginResponse = await fetch('http://localhost:9000/users/login', {
+					const loginResponse = await fetch(process.env.REACT_APP_SERVER_URL + '/users/login', {
 					method: 'POST',
 					credentials: 'include',
 					body: JSON.stringify(this.state),

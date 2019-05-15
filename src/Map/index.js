@@ -6,7 +6,10 @@ require('dotenv').config()
 export class MapContainer extends Component {
 	  render() {
     return (
-      <Map google={this.props.google} zoom={4.5} style={{width: '75%', height: '75%', position: 'relative'}}>
+      <Map google={this.props.google} zoom={4.4} style={{width: '75%', height: '75%', position: 'relative'}}  initialCenter={{
+            lat: 39.5781,
+            lng: -93.6298
+          }}>
       </Map>
       );
 	}
