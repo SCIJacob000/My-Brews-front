@@ -8,16 +8,23 @@ class Login extends Component {
 		this.state={
 			username: '',
 			password: '',
-			userDbId: ''
+			userDbId: '',
+			whatAmIDoing: 'login'
 		}
 	}
 	handleChange= (e)=>{
 		this.setState({[e.target.name]: e.target.value});
 	}
+	toggleLoginRegister = () => {
+			
+	}
 	handleSubmit = async (e)=>{
 		e.preventDefault()
 		try{
-			const loginResponse = await fetch('http://localhost:9000/users/login',{
+			let url;
+			// if()
+
+			const loginResponse = await fetch('http://localhost:9000/users/register', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
@@ -29,7 +36,7 @@ class Login extends Component {
 			const parsedResponse = await loginResponse.json();
 
 			if(parsedResponse.data === 'login successful'){
-				this.props.history.push('/users')
+				this.props.history.push('/users/login')
 			}
 
 		}
@@ -39,13 +46,15 @@ class Login extends Component {
 	}
 	render(){
 		return(
-			<form>
-			Username:
+			<form onSubmit={this.handleSubmit}>
+				Username:
 				<input type="text" name="username" onChange={this.handleChange}/>
-			Password:
+				Password:
 				<input type="text" name="password" onChange={this.handleChange}/>
-				<button type="submit">Login</button>
+				<button type="submit">"Login"</button>
 			</form>
 		)
 	}
 }
+
+export default Login
