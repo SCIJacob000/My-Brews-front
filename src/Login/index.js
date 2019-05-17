@@ -94,8 +94,8 @@ class Login extends Component {
 				<form onSubmit={this.handleSubmit}>
 					Username:<input type="text" name="username" onChange={this.handleChange}/><br/>
 					Password:<input type="text" name="password" onChange={this.handleChange}/><br/>
-					<button type="submit">{this.state.whatAmIDoing === "login" ? "Log-In" : "Register"}</button>
 					<p onClick={this.toggleLoginRegister}>Dont have an account? Click Here!</p>
+					<button type="submit">{this.state.whatAmIDoing === "login" ? "Log-In" : "Register"}</button>
 				</form>
 				<button type="submit" onClick={this.logout}>Log-Out</button>
 			</div>
