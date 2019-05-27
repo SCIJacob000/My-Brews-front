@@ -6,7 +6,9 @@ class parkInfo extends Component{
 		super()
 
 		this.state={
-			response: []
+			response: [],
+			name: '',
+			trip: ''
 		}
 	}
 
@@ -22,7 +24,6 @@ class parkInfo extends Component{
 			method: 'GET',
 			credentials: 'include'
 		})
-		// console.log(response);
 		const parsedResponse = await response.json()
 		
 		console.log(parsedResponse);
@@ -31,10 +32,22 @@ class parkInfo extends Component{
 			response: parsedResponse.data
 		})
 	}
+	addParkToTrip = async (e)=>{
+		e.preventDefault()
+		const index = e.currentTarget.id
+		const parkCode = this.props.response[index].parkCode
+		const body = {}
+		body.trip = e.currentTarget.value
+		const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/trips/parks?parkCode=${parkCode}`,{
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify(body)//this should be the name of the park you want to add to the trip
+		})
+	}
 	render(){
 	const parkList = this.props.response.map((park, i)=>{
 	return(
-		<li key={park.id}>
+		<li className="porter" key={park.id}>
 			Name:
 			<span>{park.fullName}</span>
 			<br/>
@@ -47,10 +60,13 @@ class parkInfo extends Component{
 			Weather-Info:
 			<span>{park.weatherInfo}</span>
 			<br/>
+
 			<form id={i} onSubmit={this.getCampInfo}>
 				<button type="submit">See Campground Info</button>
 			</form>
-			<form id={i} >
+
+			<form id={i} onSubmit={this.addParkToTrip}>
+				<input type="text" name="name" placeholder="Trip Name" onChange={this.onChange}></input>
 				<button type="submit">Add this park to your Trip</button>
 			</form>	
 			<br/>
@@ -66,6 +82,7 @@ class parkInfo extends Component{
 				{parkList}
 
 			</ul>
+				<h3> Campground-Info:</h3><br/>
 				<Camps response={this.state.response}/>
 		</div>
 		)

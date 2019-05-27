@@ -2,11 +2,6 @@ import React, {Component} from 'react'
 
 
 class Camps extends Component{
-	constructor(){
-		super()
-	}
-
-
 	render(){
 		
 		const campList = this.props.response.map((camp, i)=>{

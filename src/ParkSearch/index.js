@@ -9,7 +9,10 @@ class ParkSearch extends Component {
 		this.state={
 			madeSearch: false,
 			stateCode: "",
-			response: []
+			response: [],
+			name: '',
+			startDate: '',
+			endDate: ''
 		}
 	}
 
@@ -37,9 +40,50 @@ class ParkSearch extends Component {
 		// console.log(usefulResponse.data)
 	}
 
+	handleChange = (e) => {
+		this.setState({
+			[e.currentTarget.name]: e.currentTarget.value
+		})
+	}
+
+	createTrip = async (e)=>{
+		e.preventDefault()
+		console.log('button working');
+
+		const body = {
+			name: this.state.name,
+			startDate: this.state.startDate,
+			endDate: this.state.endDate
+		}
+
+		console.log("body being submitted:")
+		console.log(body)
+
+		const response = await fetch(process.env.REACT_APP_SERVER_URL + '/trips', {
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify(body),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+
+		const parsedResponse = await response.json()
+
+		console.log(parsedResponse)
+	}
+
 	render(){
+
 		return(
-			<div >
+			<div>
+				<form onSubmit={this.createTrip}>
+					<input type="text" name="name" placeholder="Trip Name" onChange={this.handleChange} />
+					<input type="date" name="startDate" onChange={this.handleChange} />
+					<input type="date" name="endDate" onChange={this.handleChange} />
+					<button>Create A New Trip</button>
+				</form>
+
 				<form onSubmit={this.handleSubmit}> 
 					<select onChange={this.onChange}>
 						<option value="AL">Alabama</option>
